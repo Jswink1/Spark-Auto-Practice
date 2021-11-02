@@ -1,0 +1,51 @@
+﻿@page
+@model SparkAutoPractice.Pages.ServiceTypes.DeleteModel
+@{
+}
+
+@* Page Header/Title *@
+<br />
+<h2 class="text-info">Delete Service</h2>
+<br />
+
+<form method="post">
+    <div class="border backgroundWhite">
+        <input type="hidden" asp-for="ServiceType.Id" />
+
+        @* Disabled Service Name Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ServiceType.Name"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ServiceType.Name" class="form-control" disabled="disabled" />
+            </div>
+        </div>
+
+        @* Disabled Service Price Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="ServiceType.Price"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ServiceType.Price" class="form-control" disabled="disabled" />
+            </div>
+        </div>
+
+        @* Delete Service Submit Buttons *@
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <div class="row">
+                    <div class="col-6">
+                        <button asp-page-handler="Delete" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger form-control">
+                            Delete
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <a asp-page="Index" class="btn btn-success form-control">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

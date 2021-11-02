@@ -1,0 +1,92 @@
+﻿@page
+@model SparkAutoPractice.Pages.Cars.DeleteModel
+@{
+}
+
+@* Page Header/Title *@
+<br />
+<h2 class="text-info">Delete Car</h2>
+<br />
+
+<form method="post">
+    <div class="border backgroundWhite">
+        <input type="hidden" asp-for="Car.Id" />
+        <input type="hidden" asp-for="Car.UserId" />
+
+        @* Disabled Car VIN Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Car.VIN" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Car.VIN" class="form-control" disabled />
+            </div>
+        </div>
+
+        @* Disabled Car Make Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Car.Make" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Car.Make" class="form-control" disabled />
+            </div>
+        </div>
+
+        @* Disabled Car Model Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Car.Model" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Car.Model" class="form-control" disabled />
+            </div>
+        </div>
+
+        @* Disabled Car Style Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Car.Style" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Car.Style" class="form-control" disabled />
+            </div>
+        </div>
+
+        @* Disabled Car Year Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Car.Year" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Car.Year" class="form-control" disabled />
+            </div>
+        </div>
+
+        @* Disabled Car Color Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Car.Color" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Car.Color" class="form-control" disabled />
+            </div>
+        </div>
+
+        @* Delete Car Submit Buttons *@
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <div class="row">
+                    <div class="col-6">
+                        <button asp-page-handler="Delete" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger form-control">
+                            Delete
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <a asp-page="Index" class="btn btn-success form-control">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

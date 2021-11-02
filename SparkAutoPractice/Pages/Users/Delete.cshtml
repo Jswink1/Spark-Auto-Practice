@@ -1,0 +1,91 @@
+﻿@page
+@model SparkAutoPractice.Pages.Users.DeleteModel
+@{
+}
+
+@* Page Header/Title *@
+<br />
+<h2 class="text-info">Delete Customer</h2>
+<br />
+
+<form method="post">
+    <div class="border backgroundWhite">
+        <input type="hidden" asp-for="Customer.Id" />
+
+        @* Disabled User Name Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Customer.Name" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Customer.Name" class="form-control" disabled />
+            </div>
+        </div>
+
+        @* Disabled User Email Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Customer.Email" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Customer.Email" class="form-control" disabled />
+            </div>
+        </div>
+
+        @* Disabled User Phone Number Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Customer.PhoneNumber" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Customer.PhoneNumber" class="form-control" disabled />
+            </div>
+        </div>
+
+        @* Disabled User Address Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Customer.Address" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Customer.Address" class="form-control" disabled />
+            </div>
+        </div>
+
+        @* Disabled User City Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Customer.City" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Customer.City" class="form-control" disabled />
+            </div>
+        </div>
+
+        @* Disabled User Postal Code Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Customer.PostalCode" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Customer.PostalCode" class="form-control" disabled />
+            </div>
+        </div>
+
+        @* Delete User Submit buttons *@
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <div class="row">
+                    <div class="col-6">
+                        <button asp-page-handler="Delete" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger form-control">
+                            Delete
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <a asp-page="Index" class="btn btn-success form-control">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

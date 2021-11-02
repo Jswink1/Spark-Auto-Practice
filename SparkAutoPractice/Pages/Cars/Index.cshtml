@@ -1,0 +1,160 @@
+﻿@page
+@model SparkAutoPractice.Pages.Cars.IndexModel
+@using SparkAutoPractice.Utility
+@{
+}
+
+@* Status message to display error or success *@
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+
+@* Page Header/Title *@
+<h2 class="text-info py-2">Car Record For Customer</h2>
+
+<div class="container backgroundWhite">
+    <div class="card">
+
+        @* Sub-Header *@
+        <div class="card-header bg-dark text-light ml-0 row container">
+            <div class="col-6">
+                <i class="fas fa-car"></i>
+            </div>
+
+            @* Return to Users Page Button *@
+            <div class="col-6 text-right">
+                @if (User.IsInRole(SD.AdminEndUser))
+                {
+                    <a asp-page="/Users/Index" class="btn btn-outline-info btn-sm">Back To Users</a>
+                }
+            </div>
+        </div>
+
+        @* Cars and User Details *@
+        <div class="card-body">
+            <div class="row" style="padding-bottom: 40px; padding-top: 20px;">
+
+                @* Add New Car Button *@
+                <div class="col-md-3">
+                    <p>
+                        <a asp-page="Create" asp-route-userId="@Model.CarAndCustomerVM.User.Id" class="btn btn-info form-control">
+                            <i class="fas fa-plus"></i> &nbsp; Add New Car
+                        </a>
+                    </p>
+                </div>
+
+                <div class="col-md-6 offset-md-3">
+
+                    @* Customer Name *@
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="CarAndCustomerVM.User.Name"></label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input asp-for="CarAndCustomerVM.User.Name" disabled class="form-control" />
+                        </div>
+                    </div>
+
+                    @* Customer Phone Number *@
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="CarAndCustomerVM.User.PhoneNumber"></label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input asp-for="CarAndCustomerVM.User.PhoneNumber" disabled class="form-control" />
+                        </div>
+                    </div>
+
+                    @* Customer Email *@
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label asp-for="CarAndCustomerVM.User.Email"></label>
+                        </div>
+                        <div class="col-sm-8">
+                            <input asp-for="CarAndCustomerVM.User.Email" disabled class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.CarAndCustomerVM.Cars.Count() == 0)
+            {
+                <p>No Car Found! Please add a car...</p>
+            }
+            else
+            {
+                <table class="table table-striped border">
+                    @* Table Head *@
+                    <tr class="table-secondary">
+                        <th>
+                            @Html.DisplayNameFor(x => x.CarAndCustomerVM.Cars.FirstOrDefault().VIN)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(x => x.CarAndCustomerVM.Cars.FirstOrDefault().Make)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(x => x.CarAndCustomerVM.Cars.FirstOrDefault().Model)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(x => x.CarAndCustomerVM.Cars.FirstOrDefault().Color)
+                        </th>
+                        <th></th>
+                        @* Even though this heading is empty, we must wrap it in an if, and only show it if the user is an admin,
+                            because the data for this column below only appears if the user is an admin as well. This ensures proper alignment *@
+                        @if (User.IsInRole(SD.AdminEndUser))
+                        {
+                            <th></th>
+                        }
+                        <th></th>
+                    </tr>
+
+                    @* Table Rows *@
+                    @foreach (var car in Model.CarAndCustomerVM.Cars)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(m => car.VIN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => car.Make)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => car.Model)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => car.Color)
+                            </td>
+
+                            @* Service History Button *@
+                            <td>
+                                <a class="btn btn-secondary" asp-page="../Services/History" asp-route-carId="@car.Id">
+                                    <i class="fas fa-wrench"></i> &nbsp; Service History
+                                </a>
+                            </td>
+                            @if (User.IsInRole(SD.AdminEndUser))
+                            {
+
+                                @* Add New Service Button *@
+                                <td>
+                                    <a class="btn btn-success" asp-page="../Services/Create" asp-route-carId="@car.Id">
+                                        <i class="fas fa-plus"></i> &nbsp; New Service
+                                    </a>
+                                </td>
+                            }
+
+                            @* Edit and Delete Car Buttons *@
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@car.Id">
+                                        <i class="fas fa-edit"></i>
+                                    </a> &nbsp; &nbsp;
+                                    <a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@car.Id">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+﻿@page
+@model SparkAutoPractice.Pages.Users.IndexModel
+@{
+}
+
+<form method="get" asp-page="Index">
+    <br /><br />
+    <div class="row">
+
+        @* Page Header/Title *@
+        <div class="col-6">
+            <h2 class="text-info">Customers List</h2>
+        </div>
+
+        @* Create New User Button *@
+        <div class="col-6 text-right">
+            <a asp-page="/Account/Register" asp-area="Identity" class="btn btn-info">
+                <i class="fas fa-plus"></i>&nbsp;
+                Create New Customer
+            </a>
+        </div>
+    </div>
+
+    <div class="border backgroundWhite">
+        <div style="height: 60px" class="container border border-secondary">
+            <div class="row">
+
+                @* Search Boxes *@
+                <div class="col-11">
+                    <div class="row" style="padding-top: 10px">
+                        <div class="col 4">
+                            @Html.Editor("searchEmail", new { htmlAttributes = new { @class = "form-control", placeholder = "Email..." } })
+                        </div>
+                        <div class="col 4">
+                            @Html.Editor("searchName", new { htmlAttributes = new { @class = "form-control", placeholder = "Name..." } })
+                        </div>
+                        <div class="col 4">
+                            @Html.Editor("searchPhone", new { htmlAttributes = new { @class = "form-control", placeholder = "Phone..." } })
+                        </div>
+                    </div>
+                </div>
+
+                @* Search Button *@
+                <div class="col-1">
+                    <div class="row" style="padding-top: 10px; padding-right: 15px;">
+                        <button type="submit" name="submit" value="Search" class="btn btn-info form-control">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <div>
+            <table class="table table-striped border">
+                @* Table Head *@
+                <tr class="table-secondary">
+                    <th>
+                        @Html.DisplayNameFor(x => x.UsersPaginationVM.ApplicationUsers[0].Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(x => x.UsersPaginationVM.ApplicationUsers[0].PhoneNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(x => x.UsersPaginationVM.ApplicationUsers[0].Email)
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+                @* User Data *@
+                @foreach (var user in Model.UsersPaginationVM.ApplicationUsers)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(x => user.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => user.PhoneNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => user.Email)
+                        </td>
+                        @* Display Customer Cars Button *@
+                        <td>
+                            <a asp-page="../Cars/Index" asp-route-userId="@user.Id" style="text-decoration: none;">
+                                <img src="~/images/car.png" width="40" /> &nbsp; View Cars
+                            </a>
+                        </td>
+
+                        @* Edit and Delete Buttons  *@
+                        <td>
+                            <a class="btn btn-primary text-white" asp-page="Edit" asp-route-Id="@user.Id">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a class="btn btn-danger text-white" asp-page="Delete" asp-route-Id="@user.Id">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+                @* Pagination *@
+                @* Note: Tags must be imported on _ViewImports.cshtml Page *@
+                <tr>
+                    <td colspan="5" class="text-right">
+                        <div page-model="@Model.UsersPaginationVM.Pagination" asp-action="Index" page-class="btn border"
+                             page-class-normal="btn btn-light" page-class-selected="btn btn-info active" class="btn-group">
+
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</form>

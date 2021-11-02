@@ -1,0 +1,96 @@
+﻿@page
+@model SparkAutoPractice.Pages.Users.EditModel
+@{
+}
+
+@* Page Header *@
+<br />
+<h2 class="text-info">Edit Customer</h2>
+<br />
+
+<form method="post">
+    <div class="border backgroundWhite">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Customer.Id" />
+        <input type="hidden" asp-for="Customer.Email" />
+
+        @* Edit User Name Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Customer.Name" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Customer.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Customer.Name" class="text-danger"></span>
+        </div>
+
+        @* Disabled User Email Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Customer.Email" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Customer.Email" class="form-control" disabled />
+            </div>
+            <span asp-validation-for="Customer.Email" class="text-danger"></span>
+        </div>
+
+        @* Edit User Phone Number Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Customer.PhoneNumber" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Customer.PhoneNumber" class="form-control" />
+            </div>
+            <span asp-validation-for="Customer.PhoneNumber" class="text-danger"></span>
+        </div>
+
+        @* Edit User Address Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Customer.Address" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Customer.Address" class="form-control" />
+            </div>
+            <span asp-validation-for="Customer.Address" class="text-danger"></span>
+        </div>
+
+        @* Edit User City Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Customer.City" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Customer.City" class="form-control" />
+            </div>
+            <span asp-validation-for="Customer.City" class="text-danger"></span>
+        </div>
+
+        @* Edit User Postal Code Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Customer.PostalCode" class="text-info"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Customer.PostalCode" class="form-control" />
+            </div>
+            <span asp-validation-for="Customer.PostalCode" class="text-danger"></span>
+        </div>
+
+        @* Edit User Submit Buttons *@
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <div class="row">
+                    <partial name="_EditAndBackToListButton" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

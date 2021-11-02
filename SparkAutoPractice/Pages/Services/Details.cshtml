@@ -1,0 +1,115 @@
+﻿@page
+@model SparkAutoPractice.Pages.Services.DetailsModel
+@{
+}
+
+<div class="container pt-4 pb-2 row">
+
+    @* Page Header/Title *@
+    <div class="col-6">
+        <h2 class="text-info py-2">Service Details</h2>
+    </div>
+
+    @* Back to Service History Page Button *@
+    <div class="col-3 offset-3 text-right py-2">
+        <a asp-page="../Services/History" asp-route-carId="@Model.ServiceHeader.CarId" class="btn btn-outline-success form-control">
+            Back To List
+        </a>
+    </div>
+</div>
+
+<div class="container backgroundWhite">
+    <div class="card">
+        <div class="card-header bg-dark text-light ml-0 row container">
+
+            @* Customer Icon *@
+            <div class="col-1 text-center pt-3 text-white-50">
+                <i class="far fa-user fa-2x"></i>
+            </div>
+            @* Customer Details *@
+            <div class="col-5">
+                <label class="text-info">@Model.ServiceHeader.Car.ApplicationUser.Name</label>
+                <br />
+                <label class="text-info">@Model.ServiceHeader.Car.ApplicationUser.Email / @Model.ServiceHeader.Car.ApplicationUser.PhoneNumber</label>
+            </div>
+
+            @* Car Details *@
+            <div class="col-5 text-right">
+                <label class="text-info">@Model.ServiceHeader.Car.Make @Model.ServiceHeader.Car.Model @Model.ServiceHeader.Car.Style </label>
+                <br />
+                <label class="text-info">@Model.ServiceHeader.Car.Year </label>
+            </div>
+            @* Car Icon *@
+            <div class="col-1 text-center pt-3 text-white-50">
+                <i class="fas fa-car fa-2x"></i>
+            </div>
+
+        </div>
+
+        <div class="card-body">
+            <div class="row pt-3">
+
+                <div class="col-7">
+                    <table class="table table-striped border">
+
+                        @* Service Details Table Head *@
+                        <tr class="table-secondary">
+                            <th>
+                                @Html.DisplayNameFor(x => Model.ServiceDetails[0].ServiceName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(x => Model.ServiceDetails[0].ServicePrice)
+                            </th>
+                        </tr>
+
+                        @* Service Details Table Data *@
+                        @foreach (var item in Model.ServiceDetails)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(x => item.ServiceName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(x => item.ServicePrice)
+                                </td>
+                            </tr>
+                        }
+
+                        @* Total Price *@
+                        <tr style="background-color:#e2fee2">
+                            <td colspan="1">
+                                <h6 class="text-succes">Total Price :</h6>
+                            </td>
+                            <td colspan="2">
+                                <h6 class="text-succes">@Model.ServiceHeader.TotalPrice</h6>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+                @* Service Miles and Comments *@
+                <div class="col-5 px-4 pb-2">
+                    <div class="row">
+                        <div class="col-3">
+                            <label asp-for="ServiceHeader.Miles" class="form-control" style="border: none;"></label>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="ServiceHeader.Miles" id="txtMiles" class="form-control" readonly />
+                        </div>
+                    </div>
+                    <div class="row py-2">
+                        <div class="col-12">
+                            <textarea placeholder="Comments..." asp-for="ServiceHeader.Details"
+                                      class="form-control" style="height: 100px;" readonly>
+
+                                        </textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

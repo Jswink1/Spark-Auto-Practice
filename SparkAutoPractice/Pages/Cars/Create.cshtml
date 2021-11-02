@@ -1,0 +1,95 @@
+﻿@page
+@model SparkAutoPractice.Pages.Cars.CreateModel
+@{
+}
+
+@* Page Header/Title *@
+<br />
+<h2 class="text-info">Add New Car</h2>
+<br />
+
+<form method="post">
+    <div class="border backgroundWhite">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="Car.UserId" hidden />
+
+        @* Create Car VIN Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Car.VIN"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Car.VIN" class="form-control" />
+            </div>
+            <span asp-validation-for="Car.VIN" class="text-danger"></span>
+        </div>
+
+        @* Create Car Make Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Car.Make"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Car.Make" class="form-control" />
+            </div>
+            <span asp-validation-for="Car.Make" class="text-danger"></span>
+        </div>
+
+        @* Create Car Model Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Car.Model"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Car.Model" class="form-control" />
+            </div>
+            <span asp-validation-for="Car.Model" class="text-danger"></span>
+        </div>
+
+        @* Create Car Style Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Car.Style"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Car.Style" class="form-control" />
+            </div>
+            <span asp-validation-for="Car.Style" class="text-danger"></span>
+        </div>
+
+        @* Create Car Year Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Car.Year"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Car.Year" class="form-control" />
+            </div>
+            <span asp-validation-for="Car.Year" class="text-danger"></span>
+        </div>
+
+        @* Create Car Color Input *@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Car.Color"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="Car.Color" class="form-control" />
+            </div>
+            <span asp-validation-for="Car.Color" class="text-danger"></span>
+        </div>
+
+        @* Create Car Submit Buttons *@
+        <div class="form-group row">
+            <div class="col-5 offset-2">
+                <div class="row">
+                    <partial name="_CreateAndBackToListButton" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

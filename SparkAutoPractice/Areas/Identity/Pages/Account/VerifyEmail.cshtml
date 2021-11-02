@@ -1,0 +1,14 @@
+﻿@page
+@model SparkAutoPractice.Areas.Identity.Pages.Account.VerifyEmailModel
+@{
+}
+
+<h1>Confirm Your Email Before Proceeding</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Email" />
+
+    <button asp-page-handler="ResendEmail" onclick="return alert('Email Sent')" class="btn btn-info form-control">
+        Resend Email
+    </button>
+</form>
